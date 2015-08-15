@@ -1,0 +1,28 @@
+﻿<section class="container">
+    <h2 class="page-title" data-bind="text: title"></h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="startingLocation2">Starting Location (pooler)</label>
+                    <input type="text" class="form-control disabled" id="startingLocation2" disabled placeholder="Starting Location (pooler)" data-bind="value: startingLocation2">
+                </div>
+                <div class="form-group">
+                    <label for="endLocation2">End Location (pooler)</label>
+                    <input type="text" class="form-control" id="endLocation2" placeholder="End Location (pooler)" data-bind="value: endLocation2">
+                </div>
+                <div class="form-group">
+                    <label for="trip">Trips</label>
+                    <select class="form-control" data-bind="options: list, value: trip, optionsText: function (item) { return 'Email: ' + item.emailAddress() + ', Destination: ' + item.endLocation() + ', Time: ' + item.dateOfDeparture() + ' ' + item.timeOfDeparture();}"></select>
+                </div>
+                <span data-bind="visible: distanceWithoutPooler, text: 'Distance without detour: ' + distanceWithoutPooler() + 'km'"></span><br />
+                <span data-bind="visible: distanceWithPooler, text: 'Distance with detour: ' + distanceWithPooler() + 'km'"></span><br />
+                <span data-bind="visible: distance, text: 'Detour distance: ' + distance() + 'km'"></span><br />
+                <span data-bind="visible: cost, text: 'Cost: $' + cost()"></span><br />
+                <span data-bind="visible: time, text: 'Time spent on detour: ' + time() + ' minutes'"></span><br />
+            </div>
+            <div class="col-sm-6">
+                <div id="map"></div>
+                <div id="directionsPanel" style="width:200px;height: 200px"></div>
+            </div>
+        </div>
+</section>

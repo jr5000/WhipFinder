@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarpoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CarPool">
+    <Key>
+      <PropertyRef Name="CarPoolID" />
+    </Key>
+    <Property Name="CarPoolID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TripID" Type="Int64" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartingLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EndLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CarpoolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CarPools" EntityType="Self.CarPool" />
+    <EntitySet Name="Trip" EntityType="CarpoolModel.Trip" />
+    <FunctionImport Name="CreateTrip">
+      <Parameter Name="EmailAddress" Mode="In" Type="String" />
+      <Parameter Name="StartingLocation" Mode="In" Type="String" />
+      <Parameter Name="EndLocation" Mode="In" Type="String" />
+      <Parameter Name="DateOfDeparture" Mode="In" Type="String" />
+      <Parameter Name="TimeOfDeparture" Mode="In" Type="String" />
+      <Parameter Name="MaxDeviation" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Trip">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="TripID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartingLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EndLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfDeparture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeOfDeparture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaxDeviation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

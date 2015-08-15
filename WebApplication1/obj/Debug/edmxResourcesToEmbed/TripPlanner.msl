@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CarpoolModelStoreContainer" CdmEntityContainer="CarpoolEntities">
+    <EntitySetMapping Name="CarPools">
+      <EntityTypeMapping TypeName="CarpoolModel.CarPool">
+        <MappingFragment StoreEntitySet="CarPool">
+          <ScalarProperty Name="CarPoolID" ColumnName="CarPoolID" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StartingLocation" ColumnName="StartingLocation" />
+          <ScalarProperty Name="EndLocation" ColumnName="EndLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trip">
+      <EntityTypeMapping TypeName="CarpoolModel.Trip">
+        <MappingFragment StoreEntitySet="vw_Trip">
+          <ScalarProperty Name="MaxDeviation" ColumnName="MaxDeviation" />
+          <ScalarProperty Name="TimeOfDeparture" ColumnName="TimeOfDeparture" />
+          <ScalarProperty Name="DateOfDeparture" ColumnName="DateOfDeparture" />
+          <ScalarProperty Name="EndLocation" ColumnName="EndLocation" />
+          <ScalarProperty Name="StartingLocation" ColumnName="StartingLocation" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="CarpoolModel.Trip">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="CarpoolModel.Store.CreateTrip">
+            <ScalarProperty Name="MaxDeviation" ParameterName="MaxDeviation" />
+            <ScalarProperty Name="TimeOfDeparture" ParameterName="TimeOfDeparture" />
+            <ScalarProperty Name="DateOfDeparture" ParameterName="DateOfDeparture" />
+            <ScalarProperty Name="EndLocation" ParameterName="EndLocation" />
+            <ScalarProperty Name="StartingLocation" ParameterName="StartingLocation" />
+            <ScalarProperty Name="EmailAddress" ParameterName="EmailAddress" />
+            <ResultBinding Name="TripID" ColumnName="TripID" />
+          </InsertFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateTrip" FunctionName="CarpoolModel.Store.CreateTrip" />
+  </EntityContainerMapping>
+</Mapping>

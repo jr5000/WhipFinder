@@ -1,0 +1,15 @@
+﻿<section class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 style="display: inline-block">Whip Finder</h2>
+            <div class="btn-group" data-bind="foreach: router.navigationModel">
+                <a data-bind="css: { active: isActive }, attr: { href: hash }, text: title"
+                   class="btn btn-info" href="#"></a>
+            </div>
+            <form class="form-inline" style="display: inline-block">
+                <label for="MyEmail">Email</label>
+                <input type="text" class="form-control" id="MyEmail" placeholder="Email" data-bind="value: MyEmail">
+            </form>
+        </div>
+    </div>
+</section>

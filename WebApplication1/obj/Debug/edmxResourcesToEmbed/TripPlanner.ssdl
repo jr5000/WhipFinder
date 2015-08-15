@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarpoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CarPool">
+    <Key>
+      <PropertyRef Name="CarPoolID" />
+    </Key>
+    <Property Name="CarPoolID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TripID" Type="bigint" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndLocation" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Carpool.dbo.vw_Trip' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_Trip">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="TripID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfDeparture" Type="nvarchar(max)" />
+    <Property Name="TimeOfDeparture" Type="nvarchar(max)" />
+    <Property Name="MaxDeviation" Type="nvarchar(max)" />
+  </EntityType>
+  <Function Name="CreateTrip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailAddress" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="StartingLocation" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="EndLocation" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="DateOfDeparture" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TimeOfDeparture" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="MaxDeviation" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="CarpoolModelStoreContainer">
+    <EntitySet Name="CarPool" EntityType="Self.CarPool" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_Trip" EntityType="Self.vw_Trip" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[vw_Trip].[TripID] AS [TripID], 
+[vw_Trip].[EmailAddress] AS [EmailAddress], 
+[vw_Trip].[StartingLocation] AS [StartingLocation], 
+[vw_Trip].[EndLocation] AS [EndLocation], 
+[vw_Trip].[DateOfDeparture] AS [DateOfDeparture], 
+[vw_Trip].[TimeOfDeparture] AS [TimeOfDeparture], 
+[vw_Trip].[MaxDeviation] AS [MaxDeviation]
+FROM [dbo].[vw_Trip] AS [vw_Trip]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

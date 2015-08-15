@@ -1,0 +1,16 @@
+﻿<div>
+    <header data-bind="compose: { view: 'nav' }"></header>
+    <div data-bind="if:MyEmail">
+        <section id="content" class="container-fluid" data-bind="router: { transition: 'entrance', cacheViews: false }"></section>
+    </div>
+    <div data-bind="if:!MyEmail()">
+        <section id="content" class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Please enter an e-mail address</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+   <!-- <footer data-bind="compose: { view: 'footer' }"></footer>-->
+</div>
